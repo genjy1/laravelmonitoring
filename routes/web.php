@@ -9,6 +9,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/user/{user_name}/edit',['App\Http\Controllers\UserController','edit'])->name('user.edit');
     Route::get('/feedback',['App\Http\Controllers\UserController','feedback'])->name('common.feedback');
     Route::post('/feedback',['App\Http\Controllers\UserController', 'sendFeedback'])->name('common.sendFeedback');
+    Route::get('/attach',['App\Http\Controllers\MachineController', 'attach'])->name('machine.attach');
 });
 
 Route::get('/login',['App\Http\Controllers\UserController', 'login'])->name('login');

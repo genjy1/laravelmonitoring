@@ -65,4 +65,9 @@ class MachineController extends Controller
     {
         //
     }
+
+    public function attach()
+    {
+        return view('machine.attach');
+    }
 }
