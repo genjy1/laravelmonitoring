@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family:'Futura PT';
+    src: url('../font/FuturaPTHeavy.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura Book';
+    src: url("../font/FuturaPTBook.otf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.input-group{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.register-input__label{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#burger.open div:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 5px);
+}
+
+#burger.open div:nth-child(2) {
+    opacity: 0;
+}
+
+#burger.open div:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -5px);
+}
