@@ -4,7 +4,7 @@
     <body class="font-sans">
         @include('components.header')
         <div class="container w-4/5 mx-auto my-0 mt-20">
-            <h2 class="text-3xl pb-2 border-b mb-3.5 mt-3 font-semibold">Сервис <a href="{{route('machine.attach')}}" class="text-white border-r-2 bg-[#337ab7] rounded-[4px] font-semibold border-[#2e6da4] text-lg mt-2 px-2 float-right">Привязать автомат</a></h2>
+            <h2 class="text-3xl pb-2 border-b mb-3.5 mt-3 font-semibold flex items-center justify-between">Сервис <a href="{{route('machine.attach')}}" class="text-white border-r-2 bg-[#337ab7] rounded-[4px] font-semibold border-[#2e6da4] text-lg px-4 py-2 float-right">Привязать автомат</a></h2>
             <div class="overflow-hidden">
                 <h3 class="mb-2.5">Пожалуйста, выберите автомат из списка:</h3>
 

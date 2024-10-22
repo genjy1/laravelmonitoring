@@ -1,4 +1,4 @@
-    <header class="border-b border-gray-200 text-[#777] mb-5 fixed w-full top-0">
+    <header class="border-b bg-white border-gray-200 text-[#777] mb-5 fixed w-full top-0">
     <div class="mx-auto my-0 w-4/5 py-4 items-center justify-between hidden sm:flex">
         <a href="{{route('common.home')}}" class="font-semibold text-lg">VendShop Online</a>
         <nav class="list">

@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    #[Middleware('admin')]
+    public function getName()
+    {
+        $data = DB::table('users')->where('user_name','admin')->get();
+
+        dd($data);
+    }
     public function login()
     {
         return view('user.login');
@@ -90,6 +97,17 @@ class UserController extends Controller
     public function changeUserName(Request $request, $id)
     {
         $data = $request->only('user_name');
+
+        $user = User::find($id);
+
+        $user->update($data);
+
+        return redirect()->route('common.home');
+    }
+
+    public function changeRole(Request $request, $id)
+    {
+        $data = $request->only('role');
 
         $user = User::find($id);
 

@@ -37,5 +37,16 @@
         <form action="" class="flex flex-col gap-2 border-b pb-4">
             @method('PATCH')
         </form>
+        @if($user->role === 'admin')
+            <form action="{{route('changeRole',$user->id)}}" class="flex flex-col gap-2 border-b pb-4" method="POST">
+                @method('patch')
+                @csrf
+                <label for="role" class="flex flex-col">
+                    Роль
+                    <input type="text" id="role" name="role" value="{{$user->role}}" class="border rounded px-4 py-2">
+                </label>
+                <button type="submit" class="border rounded mx-auto my-0 max-w-[300px] px-4 py-2">Отправить</button>
+            </form>
+        @endif
     </div>
 </div>

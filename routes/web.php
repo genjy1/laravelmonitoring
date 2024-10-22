@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AdminMiddleware;
 
 Route::middleware('auth')->group(function (){
     Route::get('/',['App\Http\Controllers\CommonController','index'])->name('common.home');
@@ -13,6 +14,10 @@ Route::middleware('auth')->group(function (){
     Route::get('/attach',['App\Http\Controllers\MachineController', 'attach'])->name('machine.attach');
     Route::patch('/user/{id}/update/name',['App\Http\Controllers\UserController','changeUserName'])->name('changeUserName');
     Route::patch('/machine/{id}/update',['App\Http\Controllers\MachineController','update'])->name('machine.update');
+    Route::middleware(AdminMiddleware::class)->group(function (){
+        Route::get('/debug/user_name',['App\Http\Controllers\UserController','getName'])->name('getName');
+    });
+    Route::patch('/user/{id}/update/role',['App\Http\Controllers\UserController','changeRole'])->name('changeRole');
 });
 
 Route::get('/login',['App\Http\Controllers\UserController', 'login'])->name('login');
