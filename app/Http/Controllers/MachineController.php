@@ -53,9 +53,14 @@ class MachineController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Machine $machine)
+    public function update(Request $request, $id)
     {
         //
+        $machine = Machine::find($id);
+        $data = $request->validate(['number'=>'required|int','address'=>'required|string','name'=>'required|string']);
+        $machine->update($data);
+
+        return redirect()->route('machine.show',$id)->with('success','Информация об автомате успешно обновилась');
     }
 
     /**

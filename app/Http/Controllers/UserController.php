@@ -40,11 +40,9 @@ class UserController extends Controller
     public function loginPost(Request $request)
     {
         $credentials = ['user_name'=>$request->name, 'password'=>$request->password];
+        $remember = $request->has('remember');
 
-//        dd($credentials);
-//        dd(Auth::attempt($credentials));
-
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials,$remember)) {
             $request->session()->regenerate();
 
             return redirect()->intended('/');

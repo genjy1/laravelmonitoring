@@ -4,7 +4,7 @@
 @if(session('success'))
     {{session('success')}}
 @endif
-    <div class="container mx-auto my-0 w-4/5">
+    <div class="container mx-auto my-0 w-4/5 mt-20">
         <h1 class="pb-4">Обратная связь</h1>
         <hr>
         <p class="py-4">

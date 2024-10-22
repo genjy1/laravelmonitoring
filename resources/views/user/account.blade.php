@@ -4,6 +4,7 @@
         <p>Здесь вы можете изменить данные вашего аккаунта</p>
         <form action=" " class="flex flex-col">
             @method('PATCH')
+            @csrf
             <label for="fio">ФИО (организация)
             </label>
             <input type="text" name="fio" id="fio" value="{{$user->fio}}">
@@ -11,6 +12,7 @@
         </form>
         <form action="" class="flex flex-col">
             @method('PATCH')
+            @csrf
             <label for="user_name">
                 Имя пользователя:
             </label>
@@ -19,11 +21,14 @@
         </form>
         <form action="" class="flex flex-col">
             @method('PATCH')
+            @csrf
         </form>
         <form action="" class="flex flex-col">
             @method('PATCH')
+            @csrf
         </form>
         <form action="" class="flex flex-col">
             @method('PATCH')
+            @csrf
         </form>
     </div>

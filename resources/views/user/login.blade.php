@@ -15,8 +15,8 @@
             <input type="password" name="password" id="user_password" placeholder="Пароль" required class="p-3 bg-white text-[#555] font-bold border">
 
             <div class="checkbox">
-                <label for="user_rememberme" class="text-sm">
-                    <input type="checkbox" id="user_rememberme" name="user_rememberme">
+                <label for="remember" class="text-sm">
+                    <input type="checkbox" id="remember" name="remember">
                     Запомнить меня
                 </label>
             </div>

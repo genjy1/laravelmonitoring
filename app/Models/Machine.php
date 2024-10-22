@@ -8,4 +8,5 @@ class Machine extends Model
 {
     use HasFactory;
     //
+    protected $fillable = ['number','address','name'];
 }

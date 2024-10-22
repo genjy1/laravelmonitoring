@@ -12,10 +12,11 @@ Route::middleware('auth')->group(function (){
     Route::post('/feedback',['App\Http\Controllers\UserController', 'sendFeedback'])->name('common.sendFeedback');
     Route::get('/attach',['App\Http\Controllers\MachineController', 'attach'])->name('machine.attach');
     Route::patch('/user/{id}/update/name',['App\Http\Controllers\UserController','changeUserName'])->name('changeUserName');
+    Route::patch('/machine/{id}/update',['App\Http\Controllers\MachineController','update'])->name('machine.update');
 });
 
 Route::get('/login',['App\Http\Controllers\UserController', 'login'])->name('login');
 Route::post('/login',['App\Http\Controllers\UserController', 'loginPost'])->name('loginPost');
 Route::get('/register',['App\Http\Controllers\UserController','showRegisterView'])->name('showRegisterView');
-
 Route::post('/register/post',['App\Http\Controllers\UserController','registerPost'])->name('registerPost');
+Route::get('/forgot-password',[])->name('forgot-password');
