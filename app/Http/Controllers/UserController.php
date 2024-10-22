@@ -8,6 +8,7 @@ use App\Models\Feedback;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -68,6 +69,13 @@ class UserController extends Controller
         return view('user.edit', compact('user'));
     }
 
+    public function editRequisites($id)
+    {
+        $user = User::find($id);
+
+        return view('user.requisites', compact('user'));
+    }
+
     public function feedback()
     {
         return view('user.feedback');
@@ -75,9 +83,20 @@ class UserController extends Controller
 
     public function sendFeedback(Request $request)
     {
-        $data = $request->validate(['theme'=>'required','message'=>'required']);
+        $data = $request->validate(['theme'=>'required','message'=>'required','user_id'=>'required']);
         $feedback = Feedback::create($data);
 
         return redirect()->route('common.feedback')->with('success','Ваше сообщение успешно отправлено');
+    }
+
+    public function changeUserName(Request $request, $id)
+    {
+        $data = $request->only('user_name');
+
+        $user = User::find($id);
+
+        $user->update($data);
+
+        return redirect()->route('common.home');
     }
 }

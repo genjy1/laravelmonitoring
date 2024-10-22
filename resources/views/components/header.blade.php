@@ -1,6 +1,6 @@
-<header class="border-b border-gray-200 text-[#777] mb-5 bg-[#f8f8f8] ">
+<header class="border-b border-gray-200 text-[#777] mb-5 bg-[#f8f8f8] fixed w-full top-0">
     <div class="mx-auto my-0 w-4/5 py-4 items-center justify-between hidden sm:flex">
-        <a href="{{route('common.home')}}" class="font-bold text-lg">VendShop Online</a>
+        <a href="{{route('common.home')}}" class="font-semibold text-lg">VendShop Online</a>
         <nav class="list">
             <ul class="nav-list gap-5 hidden sm:flex">
                 <li>
@@ -25,7 +25,7 @@
                         <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06-.02L10 10.358l3.71-3.149a.75.75 0 111.02 1.096l-4.24 3.6a.75.75 0 01-.99 0l-4.24-3.6a.75.75 0 01-.02-1.06z" clip-rule="evenodd" />
                     </svg>
                 </div>
-                <div class="dropdown absolute top-16 right-36 bg-white p-4 hidden">
+                <div class="dropdown absolute top-16 right-44 bg-white p-4 hidden">
                     <ul class="dropdown-list flex flex-col gap-2 text-right">
                         <li class="list-item text-sm w-full">
                             <a href="{{route('user.edit', \Illuminate\Support\Facades\Auth::user()->id)}}">Редактировать данные аккаунта</a>
@@ -34,12 +34,7 @@
                             <a href="{{route('common.feedback')}}" class="feedback">Обратная связь</a>
                         </li>
                         <li class="list-item text-sm w-full">
-                            <form action="{{route('logout')}}" method="POST">
-                                @csrf
-                                <button>
-                                    Выход
-                                </button>
-                            </form>
+                            @include('components.logout')
                         </li>
                     </ul>
                 </div>
@@ -48,7 +43,7 @@
     </div>
         <div class="mx-auto my-0 w-4/5 py-4  items-center justify-between sm:hidden flex">
         <div class="logo">
-            <a href="{{route('common.home')}}" class="logo-link font-bold text-lg">
+            <a href="{{route('common.home')}}" class="logo-link font-semibold text-lg">
                 VendShop Online
             </a>
         </div>
@@ -72,35 +67,21 @@
                     <li class="py-2">
                         <a href="#">Статистика</a>
                     </li>
-                    <li class="dropdown">
-                        @if(\Illuminate\Support\Facades\Auth::check())
-                            <div class="drop-button flex items-center">
-                                <a href="#" class="cursor-pointer user-menu__button">{{ \Illuminate\Support\Facades\Auth::user()->user_name}}</a>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 -mr-1 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06-.02L10 10.358l3.71-3.149a.75.75 0 111.02 1.096l-4.24 3.6a.75.75 0 01-.99 0l-4.24-3.6a.75.75 0 01-.02-1.06z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <div class="dropdown absolute top-16 right-36 bg-white p-4 hidden">
-                                <ul class="dropdown-list flex flex-col gap-2 text-right">
-                                    <li class="list-item text-sm w-full">
-                                        <a href="{{route('user.edit', \Illuminate\Support\Facades\Auth::user()->id)}}">Редактировать данные аккаунта</a>
-                                    </li>
-                                    <li class="list-item text-sm w-full">
-                                        <a href="{{route('common.feedback')}}" class="feedback">Обратная связь</a>
-                                    </li>
-                                    <li class="list-item text-sm w-full">
-                                        <form action="{{route('logout')}}" method="POST">
-                                            @csrf
-                                            <button>
-                                                Выход
-                                            </button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-                        @endif
-                    </li>
-                </ul>
+                    @if(\Illuminate\Support\Facades\Auth::check())
+                        <li class="dropdown">
+                            <button class="toggle-dropdown">
+                                {{\Illuminate\Support\Facades\Auth::user()->user_name}}
+                            </button>
+                            <ul class="dropdown-menu__mobile opacity-0 h-0">
+                                <li><a href="{{route('user.edit',\Illuminate\Support\Facades\Auth::user()->id)}}">Редактировать данные аккаунта</a></li>
+                                <li><a href="{{route('common.feedback')}}">Обратная связь</a></li>
+                                <li>
+                                    @include('components.logout')
+                                </li>
+                            </ul>
+                        </li>
+
+                    @endif
             </div>
 
     </div>

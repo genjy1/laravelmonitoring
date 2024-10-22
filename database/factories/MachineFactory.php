@@ -25,7 +25,13 @@ class MachineFactory extends Factory
             'number'=>fake()->numerify('#####'),
             'imei'=>fake()->imei(),
             'name'=>fake()->word(),
-            'address'=>fake()->address()
+            'address'=>fake()->address(),
+            'balance'=>fake()->randomDigitNotZero(),
+            'condition'=>fake()->word(),
+            'errors'=>fake()->word(),
+            'subscription_until'=>fake()->dateTime,
+            'software_version'=>fake()->semver(false,true),
+            'controller_id'=>fake()->uuid()
         ];
     }
 }

@@ -22,15 +22,15 @@
                     </thead>
                     <tbody>
                     @foreach($machines as $machine)
-                        <tr class="text-center row cursor-pointer hover:bg-gray-100" onclick="document.location = '/machine/{{ $machine->id }}' ">
+                        <tr class="text-center row cursor-pointer hover:bg-gray-100 border-b" onclick="document.location = '/machine/{{ $machine->id }}' ">
                             <td class="border-r p-2">{{ $machine->id }}</td>
-                            <td class="{{$machine->status == 'Online' ? 'text-green-800' : 'text-red-800' }}">
+                            <td class="{{$machine->status == 'Online' ? 'text-green-800' : 'text-red-800' }} border-r">
                                 {{$machine->status}}
                             </td>
-                            <td>{{$machine->number}}</td>
-                            <td>{{$machine->imei}}</td>
-                            <td>{{$machine->name}}</td>
-                            <td>{{$machine->address}}</td>
+                            <td class="border-r">{{$machine->number}}</td>
+                            <td class="border-r">{{$machine->imei}}</td>
+                            <td class="border-r">{{$machine->name}}</td>
+                            <td class="border-r">{{$machine->address}}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -71,11 +71,9 @@
                                 </div>
                             </div>
                         </a>
-            @if(count($machines) >= 15)
-                <div class="pagination-container my-4 mx-auto sm:w-3/4 float-left">
-                    {{ $machines->links() }}
-                </div>
-            @endif
+            <div class="pagination-container my-4 mx-auto sm:w-3/4 float-left">
+                {{ $machines->links() }}
+            </div>
         </div>
     </body>
 </html>

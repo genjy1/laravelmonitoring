@@ -40,3 +40,7 @@
 #burger.open div:nth-child(3) {
     transform: rotate(-45deg) translate(6px, -5px);
 }
+
+.dropdown-menu__mobile{
+    transition: all ease-in-out;
+}

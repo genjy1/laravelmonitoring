@@ -18,6 +18,12 @@ return new class extends Migration
             $table->string('imei');
             $table->string('name');
             $table->string('address');
+            $table->bigInteger('balance')->nullable();
+            $table->string('condition');
+            $table->string('errors');
+            $table->date('subscription_until');
+            $table->string('software_version');
+            $table->string('controller_id');
             $table->timestamps();
         });
     }

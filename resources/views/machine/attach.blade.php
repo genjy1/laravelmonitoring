@@ -31,6 +31,6 @@
             <button type="submit" class="text-white rounded bg-[#337ab7] px-4 py-2 sm:max-w-[200px] mt-4">Привязать</button>
             <hr class="mt-3">
         </form>
-        <a href="{{route('common.home')}}">Назад</a>
+        @include('components.back')
     </div>
 </div>

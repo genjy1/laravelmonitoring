@@ -18,16 +18,17 @@
             <div class="input-group pb-4">
                 <label for="theme" class="flex flex-col gap-2 font-bold">
                     Тема сообщения
-                    <input type="text" name="theme" id="theme" placeholder="Тема сообщения" class="rounded border font-normal px-4 py-1">
+                    <input type="text" name="theme" id="theme" placeholder="Тема сообщения" class="rounded border font-normal px-4 py-1.5">
                 </label>
                 <p class="text-sm  text-[#737373]">До 50 символов</p>
             </div>
             <div class="input-group">
                 <label for="message" class="flex flex-col gap-2 font-bold">
                     Текст сообщения
-                    <textarea name="message" id="message" cols="30" rows="10" class="rounded border resize-none font-normal "></textarea>
+                    <textarea name="message" id="message" cols="30" rows="10" class="pt-2 pl-2 rounded border resize-none font-normal "></textarea>
                 </label>
             </div>
+            <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
             <button type="submit" class="mt-4 bg-[#337ab7] px-4 py-2 rounded text-white">Отправить</button>
         </form>
     </div>

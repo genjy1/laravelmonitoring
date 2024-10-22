@@ -63,6 +63,6 @@
         <button type="submit" class="max-w-[140px] bg-[#337ab7] text-white px-4 py-2.5 rounded">Регистрация</button>
     </form>
 
-    <a href="{{route('common.home')}}">Назад</a>
+    @include('components.back')
 </div>
 </body>

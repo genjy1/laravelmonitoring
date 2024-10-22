@@ -1,5 +1,6 @@
 import './bootstrap';
 
+const toggleDropDownButton = document.querySelector('.toggle-dropdown')
 window.addEventListener('click', (event) => {
         if (event.target.classList.contains('user-menu__button')){
         const menu = event.target.closest('.menu');
@@ -35,3 +36,9 @@ document.getElementById('burger').addEventListener('click', function() {
         }, 300); // Время анимации соответствует Tailwind (300ms)
     }
 });
+
+toggleDropDownButton.addEventListener('click', () => {
+    const dropDownMobile = document.querySelector('.dropdown-menu__mobile');
+    dropDownMobile.classList.toggle('opacity-0')
+    dropDownMobile.classList.toggle('h-0')
+})
