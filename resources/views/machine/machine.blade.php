@@ -15,7 +15,7 @@
             @endif
         </div>
         <header class="machine-header py-2 border-b">
-            <h1>Автомат #{{$machine->id}}</h1>
+            <h1 class="text-3xl font-semibold">Автомат #{{$machine->id}}</h1>
         </header>
         @if($machine->status == 'Offline')
             <div class="error-message bg-red-500">
@@ -112,7 +112,7 @@
                     </tr>
                 </table>
             </div>
-            <button type="submit" class="p-2 bg-[#337ab7] mt-2 w-full text-center text-white rounded sm:max-w-[220px] flex items-center justify-between">
+            <button type="submit" class="p-2 bg-[#337ab7] mt-2 w-full font-semibold  text-center text-white rounded sm:max-w-[220px] flex items-center justify-between">
                 Сохранить изменения
                 <svg class="w-8 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12"></polyline>

@@ -29,7 +29,7 @@
                 </label>
             </div>
             <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
-            <button type="submit" class="mt-4 bg-[#337ab7] px-4 py-2 rounded text-white">Отправить</button>
+            <button type="submit" class="mt-4 bg-[#337ab7] px-4 py-2 rounded text-white font-semibold">Отправить</button>
         </form>
     </div>
 </body>
