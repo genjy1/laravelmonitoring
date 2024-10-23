@@ -27,7 +27,7 @@
 
             <div class="user-actions flex flex-col">
                 <a href="{{ route('showRegisterView') }}" class="register font-futuraBook">Регистрация</a>
-                <a href="#" class="forget-password font-futuraBook">Забыли пароль?</a>
+                <a href="{{route('forgot-password')}}" class="forget-password font-futuraBook">Забыли пароль?</a>
             </div>
 
             <div class="banner-wrapper">

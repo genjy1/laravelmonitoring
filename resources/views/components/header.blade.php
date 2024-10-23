@@ -68,14 +68,14 @@
                         <a href="#">Статистика</a>
                     </li>
                     @if(\Illuminate\Support\Facades\Auth::check())
-                        <li class="dropdown">
+                        <li class="dropdown py-2">
                             <button class="toggle-dropdown">
                                 {{\Illuminate\Support\Facades\Auth::user()->user_name}}
                             </button>
                             <ul class="dropdown-menu__mobile opacity-0 h-0">
-                                <li><a href="{{route('user.edit',\Illuminate\Support\Facades\Auth::user()->id)}}">Редактировать данные аккаунта</a></li>
-                                <li><a href="{{route('common.feedback')}}">Обратная связь</a></li>
-                                <li>
+                                <li><a href="{{route('user.edit',\Illuminate\Support\Facades\Auth::user()->id)}}" class="">Редактировать данные аккаунта</a></li>
+                                <li><a href="{{route('common.feedback')}}" class="">Обратная связь</a></li>
+                                <li class="">
                                     @include('components.logout')
                                 </li>
                             </ul>

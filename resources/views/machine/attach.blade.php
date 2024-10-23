@@ -1,6 +1,6 @@
 @include('components.head')
 @include('components.header')
-<div class="container mx-auto my-o w-4/5">
+<div class="container mx-auto my-o w-4/5 mt-20">
     <h1 class="pb-2 text-3xl">Привязка автомата</h1>
     <hr>
     <div class="sm:py-10 py-4">

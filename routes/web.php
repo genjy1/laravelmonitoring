@@ -18,10 +18,12 @@ Route::middleware('auth')->group(function (){
         Route::get('/debug/user_name',['App\Http\Controllers\UserController','getName'])->name('getName');
     });
     Route::patch('/user/{id}/update/role',['App\Http\Controllers\UserController','changeRole'])->name('changeRole');
+    Route::patch('/user/{id}/update/email',['App\Http\Controllers\UserController','changeEmail'])->name('changeEmail');
 });
 
 Route::get('/login',['App\Http\Controllers\UserController', 'login'])->name('login');
 Route::post('/login',['App\Http\Controllers\UserController', 'loginPost'])->name('loginPost');
 Route::get('/register',['App\Http\Controllers\UserController','showRegisterView'])->name('showRegisterView');
 Route::post('/register/post',['App\Http\Controllers\UserController','registerPost'])->name('registerPost');
-Route::get('/forgot-password',[])->name('forgot-password');
+Route::get('/forgot-password',['App\Http\Controllers\UserController','forgotPassword'])->name('forgot-password');
+Route::post('/forgot-password-post',['App\Http\Controllers\UserController','forgotPasswordPost'])->name('forgot-password-post');
