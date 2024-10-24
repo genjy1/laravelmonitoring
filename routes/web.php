@@ -7,8 +7,8 @@ Route::middleware('auth')->group(function (){
     Route::get('/',['App\Http\Controllers\CommonController','index'])->name('common.home');
     Route::post('/logout', ['App\Http\Controllers\UserController', 'logout'])->name('logout');
     Route::get('/machine/{id}',['App\Http\Controllers\MachineController', 'show'])->name('machine.show');
-    Route::get('/user/{user_name}/edit/account',['App\Http\Controllers\UserController','edit'])->name('user.edit');
-    Route::get('/user/{user_name}/edit/requisites',['App\Http\Controllers\UserController','editRequisites'])->name('user.edit.requisites');
+    Route::get('/user/{id}/edit/account',['App\Http\Controllers\UserController','edit'])->name('user.edit');
+    Route::get('/user/{id}/edit/requisites',['App\Http\Controllers\UserController','editRequisites'])->name('user.edit.requisites');
     Route::get('/feedback',['App\Http\Controllers\UserController','feedback'])->name('common.feedback');
     Route::post('/feedback',['App\Http\Controllers\UserController', 'sendFeedback'])->name('common.sendFeedback');
     Route::get('/attach',['App\Http\Controllers\MachineController', 'attach'])->name('machine.attach');
@@ -16,13 +16,18 @@ Route::middleware('auth')->group(function (){
     Route::patch('/machine/{id}/update',['App\Http\Controllers\MachineController','update'])->name('machine.update');
     Route::middleware(AdminMiddleware::class)->group(function (){
         Route::get('/debug/user_name',['App\Http\Controllers\UserController','getName'])->name('getName');
+        Route::get('/debug/feedback',['App\Http\Controllers\UserController','getFeedbackWithNames'])->name('getFeedback');
+        Route::patch('/user/{id}/update/role',['App\Http\Controllers\UserController','changeRole'])->name('changeRole');
     });
-    Route::patch('/user/{id}/update/role',['App\Http\Controllers\UserController','changeRole'])->name('changeRole');
     Route::patch('/user/{id}/update/email',['App\Http\Controllers\UserController','changeEmail'])->name('changeEmail');
+    Route::patch('/user/{id}/update/fio',['App\Http\Controllers\UserController','changeFio'])->name('changeFio');
+    Route::post('/user/{id}/requisites/create',['App\Http\Controllers\RequisitesController','create'])->name('requisites.create');
+    Route::patch('/user/{id}/update/password',['App\Http\Controllers\UserController','changePassword'])->name('changePassword');
+    Route::patch('/user/{id}/update/Tz',['App\Http\Controllers\UserController','changeTz'])->name('changeTz');
 });
 
 Route::get('/login',['App\Http\Controllers\UserController', 'login'])->name('login');
-Route::post('/login',['App\Http\Controllers\UserController', 'loginPost'])->name('loginPost');
+Route::post('/login/post',['App\Http\Controllers\UserController', 'loginPost'])->name('loginPost');
 Route::get('/register',['App\Http\Controllers\UserController','showRegisterView'])->name('showRegisterView');
 Route::post('/register/post',['App\Http\Controllers\UserController','registerPost'])->name('registerPost');
 Route::get('/forgot-password',['App\Http\Controllers\UserController','forgotPassword'])->name('forgot-password');

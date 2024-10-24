@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeMail;
 
@@ -17,10 +18,11 @@ class UserController extends Controller
     #[Middleware('admin')]
     public function getName()
     {
-        $data = DB::table('users')->where('user_name','admin')->get();
+        $data = DB::select('SELECT * FROM requisites')->get();
 
         dd($data);
-    }
+
+   }
     public function login()
     {
         return view('user.login');
@@ -54,7 +56,9 @@ class UserController extends Controller
         if (Auth::attempt($credentials,$remember)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            return redirect()->route('common.home');
+        }else{
+            return redirect()->route('login')->with('error','Пароль или логин не совпадают с сущетсвующими');
         }
 
     }
@@ -71,9 +75,10 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        $timezones = \DateTimeZone::listIdentifiers();
         $user = User::find($id);
 
-        return view('user.edit', compact('user'));
+        return view('user.edit', compact('user','timezones'));
     }
 
     public function editRequisites($id)
@@ -96,6 +101,16 @@ class UserController extends Controller
         return redirect()->route('common.feedback')->with('success','Ваше сообщение успешно отправлено');
     }
 
+    public function getFeedbackWithNames()
+    {
+        $feedbacks = DB::table('users')
+            ->leftJoin('feedback', 'users.id', '=', 'feedback.user_id')
+            ->select('users.id', 'users.user_name', 'users.user_email', 'feedback.message')
+            ->get();
+
+        return view('debug.feedback',compact('feedbacks'));
+    }
+
     public function changeUserName(Request $request, $id)
     {
         $data = $request->only('user_name');
@@ -115,7 +130,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('common.home');
+        return redirect()->route('user.edit',$id);
     }
 
     public function changeRole(Request $request, $id)
@@ -127,6 +142,16 @@ class UserController extends Controller
         $user->update($data);
 
         return redirect()->route('common.home');
+    }
+
+    public function changeFio(Request $request, $id)
+    {
+        $data = $request->only('fio');
+        $user = User::find($id);
+
+        $user->update($data);
+
+        return redirect()->route('user.edit',$id);
     }
 
     public function forgotPassword()
@@ -147,7 +172,44 @@ class UserController extends Controller
         Mail::to($user->user_email)->send(new WelcomeMail($user));
 
         // Возвращаем сообщение об успешной отправке
-        return response('Письмо отправлено!', 200);
+        return redirect()->route('forgot-password')->with('success','Письмо успешно отправлено');
 
+    }
+
+    public function changePassword(Request $request, $id)
+    {
+        // Получаем введенный пароль
+        $password = $request->only('password');
+
+        // Находим пользователя по его ID
+        $user = User::find($id);
+
+        // Захешируем пароль с помощью Hash::make
+        $hashedPassword = Hash::make($password['password']);
+
+        // Обновляем пароль пользователя, передав его как массив
+        $user->password = $hashedPassword;
+
+        $user->update();
+
+        // Редирект после успешного обновления
+        return redirect()->route('user.edit', $id)->with('success', 'Пароль успешно обновлен');
+    }
+
+
+    public function changeTz(Request $request, $id)
+    {
+
+        $tz = $request->validate(['tz'=>'required']);
+
+        dd($tz);
+
+        $user = User::find($id);
+
+        $user->user_tz = $tz;
+
+        $user->update();
+
+        return redirect()->route('user.edit',$id);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Requisites;
+use App\Models\Goods;
 use Illuminate\Http\Request;
-use App\Http\Requests\RequisitesRequest;
-class RequisitesController extends Controller
+
+class GoodsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,13 +18,9 @@ class RequisitesController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(RequisitesRequest $request)
+    public function create()
     {
         //
-        $data = $request->validated();
-        $requisite = Requisites::create($data);
-
-        return redirect()->route('user.edit.requisites')->with('success','Реквизиты успешно добавлены');
     }
 
     /**
@@ -38,7 +34,7 @@ class RequisitesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Requisites $requisites)
+    public function show(Goods $goods)
     {
         //
     }
@@ -46,7 +42,7 @@ class RequisitesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Requisites $requisites)
+    public function edit(Goods $goods)
     {
         //
     }
@@ -54,7 +50,7 @@ class RequisitesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Requisites $requisites)
+    public function update(Request $request, Goods $goods)
     {
         //
     }
@@ -62,7 +58,7 @@ class RequisitesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Requisites $requisites)
+    public function destroy(Goods $goods)
     {
         //
     }

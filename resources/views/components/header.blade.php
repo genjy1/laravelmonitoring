@@ -25,7 +25,7 @@
                         <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06-.02L10 10.358l3.71-3.149a.75.75 0 111.02 1.096l-4.24 3.6a.75.75 0 01-.99 0l-4.24-3.6a.75.75 0 01-.02-1.06z" clip-rule="evenodd" />
                     </svg>
                 </div>
-                <div class="dropdown absolute top-16 right-44 bg-white p-4 hidden">
+                <div class="dropdown absolute top-16 right-48 bg-white p-4 hidden border shadow">
                     <ul class="dropdown-list flex flex-col gap-2 text-right">
                         <li class="list-item text-sm w-full">
                             <a href="{{route('user.edit', \Illuminate\Support\Facades\Auth::user()->id)}}">Редактировать данные аккаунта</a>
@@ -48,12 +48,12 @@
             </a>
         </div>
             <button id="burger" class="block md:hidden focus:outline-none">
-                <div class="w-6 h-1 bg-gray-600 my-1 transition-transform duration-300"></div>
-                <div class="w-6 h-1 bg-gray-600 my-1 transition-transform duration-300"></div>
-                <div class="w-6 h-1 bg-gray-600 my-1 transition-transform duration-300"></div>
+                <div class="w-6 h-1 bg-[#777] my-1 transition-transform duration-300"></div>
+                <div class="w-6 h-1 bg-[#777] my-1 transition-transform duration-300"></div>
+                <div class="w-6 h-1 bg-[#777] my-1 transition-transform duration-300"></div>
             </button>
 
-            <div id="menu" class="burger-menu__container hidden max-h-0 overflow-hidden opacity-0 top-16 absolute bg-[#f8f8f8] w-full -left-0 transition-all duration-300 ease-in-out">
+            <div id="menu" class="burger-menu__container hidden max-h-0 overflow-hidden opacity-0 top-14 absolute bg-[#f8f8f8] w-full -left-0 transition-all duration-300 ease-in-out">
                 <ul class="burger-menu mx-auto my-0 w-4/5 pb-4">
                     <li class="py-2">
                         <a href="{{route('common.home')}}">Автоматы</a>

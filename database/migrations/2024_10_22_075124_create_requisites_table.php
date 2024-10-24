@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('requisites', function (Blueprint $table) {
             $table->id();
+            $table->string('paymentAccount')->nullable();
+            $table->string('correspondingAccount')->nullable();
+            $table->string('BIK')->nullable();
+            $table->string('bankName')->nullable();
+            $table->string('INN')->nullable();
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 

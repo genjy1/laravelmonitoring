@@ -3,27 +3,38 @@
     <hr class="pb-4">
     <p class="pb-4">Здесь вы можете изменить реквизиты</p>
     <div class="requisites">
-        <form action="#" class="form form-horizontal form-requisites flex flex-col gap-4">
+        @include('components.success')
+        @include('debug.errors')
+        <form action="{{route('requisites.create',\Illuminate\Support\Facades\Auth::user()->id)}}"
+              class="form form-horizontal form-requisites flex flex-col gap-4" method="post">
+            @csrf
             <div class="form-group flex-group flex flex-col">
                 <label for="paymentAccount" class="requisites-label">Номер расч. счёта</label>
-                <input type="text" id="paymentAccount" placeholder="Номер расчетного счета" name="paymentAccount" value="" class="form-control requisites-control border px-4 py-2" required>
+                <input type="text" id="paymentAccount" placeholder="Номер расчетного счета" name="paymentAccount"
+                       value="" class="form-control requisites-control border px-4 py-2" required>
             </div>
             <div class="form-group flex-group flex flex-col">
                 <label for="correspondingAccount" class="requisites-label">Номер корр. счёта</label>
-                <input type="text" id="correspondingAccount" placeholder="Номер корреспондентского счета" name="correspondingAccount" value="" class="form-control requisites-control border px-4 py-2" required>
+                <input type="text" id="correspondingAccount" placeholder="Номер корреспондентского счета"
+                       name="correspondingAccount" value="" class="form-control requisites-control border px-4 py-2"
+                       required>
             </div>
             <div class="form-group flex-group flex flex-col">
                 <label for="BIK" class="requisites-label">Введите БИК</label>
-                <input type="text" id="BIK" placeholder="Банковский идентификационный код" name="BIK" value="" class="form-control requisites-control border px-4 py-2" required>
+                <input type="text" id="BIK" placeholder="Банковский идентификационный код" name="BIK" value=""
+                       class="form-control requisites-control border px-4 py-2" required>
             </div>
             <div class="form-group flex-group flex flex-col">
                 <label for="bankName" class="requisites-label">Наименование банка</label>
-                <input type="text" id="bankName" placeholder="Полное наименование банка" name="bankName" value="" class="form-control requisites-control border px-4 py-2" required>
+                <input type="text" id="bankName" placeholder="Полное наименование банка" name="bankName" value=""
+                       class="form-control requisites-control border px-4 py-2" required>
             </div>
             <div class="form-group flex-group flex flex-col">
                 <label for="INN" class="requisites-label">Введите свой ИНН</label>
-                <input type="text" id="INN" placeholder="ИНН" name="INN" value="" class="form-control requisites-control border px-4 py-2" required>
+                <input type="text" id="INN" placeholder="ИНН" name="INN" value=""
+                       class="form-control requisites-control border px-4 py-2" required>
             </div>
+            <div class="hidden"><input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::user()->id}}"></div>
 
             <div class="form-group">
                 <button class="px-4 py-2 bg-[#337ab7] text-white rounded" type="submit">Отправить реквизиты</button>

@@ -2,6 +2,7 @@
 
 <body class="bg-[url('https://online.vend-shop.com/images/bg_signin_large.png')] bg-top bg-no-repeat font-futura">
 <div class="container mx-auto my-0 w-3/4 pt-5 pb-10">
+    @include('components.error')
     <h1 class="uppercase text-5xl font-bold text-center text-white my-5">vendshop online</h1>
     <form action="{{ route('loginPost') }}" method="POST" class="max-w-[300px] mx-auto my-0">
         @csrf
