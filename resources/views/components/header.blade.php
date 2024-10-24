@@ -1,10 +1,10 @@
     <header class="border-b bg-white border-gray-200 text-[#777] mb-5 fixed w-full top-0">
     <div class="mx-auto my-0 w-4/5 py-4 items-center justify-between hidden sm:flex">
-        <a href="{{route('common.home')}}" class="font-semibold text-lg">VendShop Online</a>
+        <a href="{{route('common.home',\Illuminate\Support\Facades\Auth::user()->id)}}" class="font-semibold text-lg">VendShop Online</a>
         <nav class="list">
             <ul class="nav-list gap-5 hidden sm:flex">
                 <li>
-                    <a href="{{route('common.home')}}">Автоматы</a>
+                    <a href="{{route('common.home',\Illuminate\Support\Facades\Auth::user()->id)}}">Автоматы</a>
                 </li>
                 <li>
                     <a href="#">Товары</a>
@@ -43,7 +43,7 @@
     </div>
         <div class="mx-auto my-0 w-4/5 py-4  items-center justify-between sm:hidden flex">
         <div class="logo">
-            <a href="{{route('common.home')}}" class="logo-link font-semibold text-lg">
+            <a href="{{route('common.home',\Illuminate\Support\Facades\Auth::user()->id)}}" class="logo-link font-semibold text-lg">
                 VendShop Online
             </a>
         </div>
@@ -56,7 +56,7 @@
             <div id="menu" class="burger-menu__container hidden max-h-0 overflow-hidden opacity-0 top-14 absolute bg-[#f8f8f8] w-full -left-0 transition-all duration-300 ease-in-out">
                 <ul class="burger-menu mx-auto my-0 w-4/5 pb-4">
                     <li class="py-2">
-                        <a href="{{route('common.home')}}">Автоматы</a>
+                        <a href="{{route('common.home',\Illuminate\Support\Facades\Auth::user()->id)}}">Автоматы</a>
                     </li>
                     <li class="py-2">
                         <a href="#">Товары</a>

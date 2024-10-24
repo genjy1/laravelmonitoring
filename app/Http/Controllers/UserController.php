@@ -45,7 +45,7 @@ class UserController extends Controller
 
         $user->save(); // Сохраняем пользователя в базе данных
 
-        return redirect()->route('common.home');
+        return redirect()->route('common.home',$user->id);
     }
 
     public function loginPost(Request $request)
@@ -56,7 +56,7 @@ class UserController extends Controller
         if (Auth::attempt($credentials,$remember)) {
             $request->session()->regenerate();
 
-            return redirect()->route('common.home');
+            return redirect()->route('common.home',Auth::user()->id);
         }else{
             return redirect()->route('login')->with('error','Пароль или логин не совпадают с сущетсвующими');
         }
@@ -119,7 +119,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('common.home');
+        return redirect()->route('common.home',$id);
     }
 
     public function changeEmail(Request $request, $id)
@@ -141,7 +141,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('common.home');
+        return redirect()->route('common.home',$id);
     }
 
     public function changeFio(Request $request, $id)
@@ -200,13 +200,13 @@ class UserController extends Controller
     public function changeTz(Request $request, $id)
     {
 
-        $tz = $request->validate(['tz'=>'required']);
-
-        dd($tz);
+        $tz = $request->validate(['user_tz'=>'required']);
 
         $user = User::find($id);
 
-        $user->user_tz = $tz;
+        $user->user_tz = $tz['user_tz'];
+
+//        dd($user->user_tz);
 
         $user->update();
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 
 Route::middleware('auth')->group(function (){
-    Route::get('/',['App\Http\Controllers\CommonController','index'])->name('common.home');
+    Route::get('/user/{id}/machines/',['App\Http\Controllers\CommonController','index'])->name('common.home');
     Route::post('/logout', ['App\Http\Controllers\UserController', 'logout'])->name('logout');
     Route::get('/machine/{id}',['App\Http\Controllers\MachineController', 'show'])->name('machine.show');
     Route::get('/user/{id}/edit/account',['App\Http\Controllers\UserController','edit'])->name('user.edit');

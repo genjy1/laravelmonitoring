@@ -29,9 +29,9 @@ class MachineFactory extends Factory
             'balance'=>fake()->randomDigitNotZero(),
             'condition'=>fake()->word(),
             'errors'=>fake()->word(),
-            'subscription_until'=>fake()->dateTime,
-            'software_version'=>fake()->semver(false,true),
-            'controller_id'=>fake()->uuid()
+            'subscription_until'=>fake()->dateTime(),
+            'software_version'=>fake()->semver(),
+            'controller_id'=>fake()->uuid(),
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Common;
 use App\Models\Machine;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CommonController extends Controller
 {
@@ -13,11 +14,11 @@ class CommonController extends Controller
      * Display a listing of the resource.
      */
 
-    public function index()
+    public function index($id)
     {
         //
-
-        $machines = Machine::paginate(15);
+        $user = User::find($id);
+        $machines = Machine::whereBelongsTo($user)->paginate(15);
 
 
         return view('machine.welcome',compact('machines'));

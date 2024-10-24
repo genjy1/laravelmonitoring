@@ -16,6 +16,10 @@
     font-style: normal;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 .input-group{
     display: flex;
     flex-direction: column;
@@ -26,8 +30,6 @@
     display: flex;
     flex-direction: column;
 }
-
-
 
 #burger.open div:nth-child(1) {
     transform: rotate(45deg) translate(6px, 5px);

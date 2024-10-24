@@ -9,4 +9,9 @@ class Machine extends Model
     use HasFactory;
     //
     protected $fillable = ['number','address','name'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

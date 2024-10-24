@@ -27,11 +27,11 @@
             @csrf
             <div class="machine-properties">
                 <table>
-                    <tr scope="row" class="border-b border-t">
+                    <tr class="border-b border-t">
                         <td class="p-2 border-r">ID автомата</td>
                         <td class="p-2">{{$machine->id}}</td>
                     </tr>
-                    <tr scope="row" class="border-b">
+                    <tr class="border-b">
                         <td class="p-2 border-r">ID контроллера</td>
                         <td class="p-2" >
                             {{
@@ -39,7 +39,7 @@
                             }}
                         </td>
                     </tr>
-                    <tr scope="row" class="border-b">
+                    <tr class="border-b">
                         <td class="p-2 border-r">Версия ПО</td>
                         <td class="p-2">
                             {{
@@ -47,7 +47,7 @@
                             }}
                         </td>
                     </tr>
-                    <tr scope="row" class="border-b">
+                    <tr class="border-b">
                         <td class="p-2 border-r">Подписка действует до</td>
                         <td class="p-2">
                             {{
@@ -55,11 +55,11 @@
                             }}
                         </td>
                     </tr>
-                    <tr scope="row" class="border-b">
+                    <tr class="border-b">
                         <td class="p-2 border-r">Статус</td>
-                        <td class="p-2 {{$machine->status == 'Offline' ? "text-red-800" : "text-green-800"}}">{{$machine->status == 'Offline' ? $machine->status . ' ' . "(последняя активность $machine->updated_at)" : $machine->status  }}</td>
+                        <td class="p-2 {{$machine->status == 'Offline' ? "text-red-800" : "text-green-500"}}">{{$machine->status == 'Offline' ? $machine->status . ' ' . "(последняя активность $machine->updated_at)" : $machine->status  }}</td>
                     </tr>
-                    <tr scope="row" class="border-b">
+                    <tr class="border-b">
                         <td class="p-2 border-r">Текущие ошибки</td>
                         <td class="p-2">
                             {{
@@ -67,7 +67,7 @@
                             }}
                         </td>
                     </tr>
-                    <tr scope="row" class="border-b">
+                    <tr class="border-b">
                         <td class="p-2 border-r">Состояние</td>
                         <td class="p-2">
                             {{
@@ -75,25 +75,25 @@
                             }}
                         </td>
                     </tr>
-                    <tr scope="row" class="border-b">
+                    <tr class="border-b">
                         <td class="p-2 border-r">Дата и время запуска</td>
                         <td class="p-2">{{$machine->created_at ? $machine->created_at : 'Неизвестно'}}</td>
                     </tr>
-                    <tr scope="row" class="border-b">
+                    <tr class="border-b">
                         <td class="p-2 border-r">Текущий баланс</td>
                         <td class="p-2">
                             {{$machine->balance ? $machine->balance : 'Неизвестно'}}
                         </td>
                     </tr>
-                    <tr scope="row" class="border-b">
+                    <tr class="border-b">
                         <td class="p-2 border-r">Номер автомата</td>
                         <td class="flex items-center"><input type="text" class="p-2 w-full focusable" name="number" value="{{$machine->number ? $machine->number : 'Неизвестно'}}">@include('components.icons.edit')</td>
                     </tr>
-                    <tr scope="row" class="border-b">
+                    <tr class="border-b">
                         <td class="p-2 border-r">Имя автомата</td>
                         <td class="flex items-center"><input type="text" class="p-2 w-full focusable" name="name" value="{{$machine->name ? $machine->name : 'Неизвестно'}}">@include('components.icons.edit')</td>
                     </tr>
-                    <tr scope="row" class="border-b">
+                    <tr class="border-b">
                         <td class="p-2 border-r">Адрес</td>
                         <td class="flex items-center"><input type="text" class="p-2 w-full focusable" name="address" value="{{$machine->address ? $machine->address : 'Неизвестно'}}">@include('components.icons.edit')</td>
                     </tr>

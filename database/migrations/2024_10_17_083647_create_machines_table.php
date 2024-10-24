@@ -24,7 +24,10 @@ return new class extends Migration
             $table->date('subscription_until');
             $table->string('software_version');
             $table->string('controller_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -37,9 +37,9 @@
             <label for="user_tz" class="font-bold">
                 Временная зона
             </label>
-            <select name="user_tz" id="user_tz" class="border rounded px-4 py-2">
+            <select name="user_tz" id="user_tz"  class="border rounded px-4 py-2">
                 @foreach($timezones as $tz)
-                    <option value="{{$tz}}">
+                    <option value="{{$tz}}" {{$tz === $user->user_tz ? 'selected' : ''}}>
                         {{$tz}}
                     </option>
                 @endforeach
