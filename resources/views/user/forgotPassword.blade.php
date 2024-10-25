@@ -20,6 +20,6 @@
         <hr class="my-2">
         <button type="submit">Восстановить пароль</button>
     </form>
-    <a href="{{route('common.home')}}" class="back mt-2">Назад</a>
+    @include('components.back')
 </div>
 </body>

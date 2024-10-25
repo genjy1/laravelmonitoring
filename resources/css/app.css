@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    .no-arrows {
+        -moz-appearance: textfield;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+}
+
+
 @font-face {
     font-family:'Futura PT';
     src: url('../font/FuturaPTHeavy.otf');

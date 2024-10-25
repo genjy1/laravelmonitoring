@@ -57,12 +57,17 @@ class MachineController extends Controller
     {
         //
         $machine = Machine::find($id);
-        $data = $request->validate(['number'=>'required|int','address'=>'required|string','name'=>'required|string']);
-        $machine->update($data);
+
+        $request->validate(['number'=>'required|int','address'=>'required|string','name'=>'required|string','balance'=>'nullable|numeric']);
+        $machine->number = $request->number;
+        $machine->address = $request->address;
+        $machine->name = $request->name;
+        $machine->balance = $request->balance;
+
+        $machine->update();
 
         return redirect()->route('machine.show',$id)->with('success','Информация об автомате успешно обновилась');
     }
-
     /**
      * Remove the specified resource from storage.
      */

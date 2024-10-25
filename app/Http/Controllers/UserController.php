@@ -58,7 +58,7 @@ class UserController extends Controller
 
             return redirect()->route('common.home',Auth::user()->id);
         }else{
-            return redirect()->route('login')->with('error','Пароль или логин не совпадают с сущетсвующими');
+            return redirect()->route('login')->with('error','Пароль или логин не совпадают с сущеcтсвующими');
         }
 
     }
@@ -205,8 +205,6 @@ class UserController extends Controller
         $user = User::find($id);
 
         $user->user_tz = $tz['user_tz'];
-
-//        dd($user->user_tz);
 
         $user->update();
 

@@ -1,21 +1,19 @@
 import './bootstrap';
 
 const toggleDropDownButton = document.querySelector('.toggle-dropdown')
-window.addEventListener('click', (event) => {
-        if (event.target.classList.contains('user-menu__button')){
-        const menu = event.target.closest('.menu');
-        const dropdown = menu.querySelector('.dropdown')
-        dropdown.classList.toggle('hidden')
-        }
-
-})
-
 const burger = document.querySelector('#burger')
 const burgerMenu = document.querySelector('.burger-menu__container')
-
+const balanceBtn = document.querySelector('.balance-btn')
+const balanceInput = document.querySelector('.balance-input')
+const machineEditForm = document.querySelector('.machine-edit__form');
 burger.addEventListener('click', () => {
 
     burger.classList.toggle('open');
+})
+
+balanceBtn.addEventListener('click', () => {
+    balanceInput.disabled = !balanceInput.disabled
+    balanceInput.focus()
 })
 
 document.getElementById('burger').addEventListener('click', function() {
@@ -41,4 +39,17 @@ toggleDropDownButton.addEventListener('click', () => {
     const dropDownMobile = document.querySelector('.dropdown-menu__mobile');
     dropDownMobile.classList.toggle('opacity-0')
     dropDownMobile.classList.toggle('h-0')
+})
+
+window.addEventListener('click', (event) => {
+    if (event.target.classList.contains('user-menu__button')){
+        const menu = event.target.closest('.menu');
+        const dropdown = menu.querySelector('.dropdown')
+        dropdown.classList.toggle('hidden')
+    }
+
+})
+
+machineEditForm.addEventListener('submit',() => {
+    balanceInput.disabled = false
 })
