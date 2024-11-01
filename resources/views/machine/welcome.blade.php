@@ -4,7 +4,22 @@
     <body class="font-sans">
         @include('components.header')
         <div class="container w-4/5 mx-auto my-0 mt-20">
-            <h2 class="text-3xl pb-2 border-b mb-3.5 mt-3 font-semibold flex items-center justify-between">Сервис <a href="{{route('machine.attach')}}" class="text-white border-r-2 bg-[#337ab7] rounded-[4px] font-semibold border-[#2e6da4] text-lg px-4 py-2 float-right">Привязать автомат</a></h2>
+            <h2 class="text-3xl pb-2 border-b mb-3.5 mt-3 font-semibold flex items-center justify-between">
+                Сервис
+                <a href="{{route('machine.attach')}}" class="text-white flex gap-2 border-r-2 bg-[#337ab7] rounded-[4px] font-semibold border-[#2e6da4] text-lg px-4 py-2 float-right">
+                    Привязать автомат
+                    <span class="icon">
+                        <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Круг -->
+                            <circle cx="50" cy="50" r="45" stroke="white" stroke-width="5" fill="none" />
+                            <!-- Горизонтальная линия плюса -->
+                            <line x1="50" y1="30" x2="50" y2="70" stroke="white" stroke-width="6" />
+                            <!-- Вертикальная линия плюса -->
+                            <line x1="30" y1="50" x2="70" y2="50" stroke="white" stroke-width="6" />
+                        </svg>
+                    </span>
+                </a>
+            </h2>
             <div class="overflow-hidden">
                 <h3 class="mb-2.5">Пожалуйста, выберите автомат из списка:</h3>
 
@@ -12,12 +27,12 @@
                 <table class="table-auto border-collapse border-[#ddd] border w-full hidden sm:table">
                     <thead>
                     <tr class="border bg-[#eee] h-14 text-nowrap">
-                        <th class="border-r p-2 text-[#333] text-center w-24">#</th>
-                        <th class="border-r p-2 text-[#333] text-center w-36">Статус</th>
-                        <th class="border-r p-2 text-[#333] text-center">Номер автомата</th>
-                        <th class="border-r p-2 text-[#333] text-center">IMEI / ID контроллера</th>
-                        <th class="border-r p-2 text-[#333] text-center">Имя автомата</th>
-                        <th class="border-r p-2 text-[#333] text-center">Адрес</th>
+                        <th class="border-r p-2 font-normal text-[#333] text-center w-24">#</th>
+                        <th class="border-r p-2 font-normal text-[#333] text-center w-36">Статус</th>
+                        <th class="border-r p-2 font-normal text-[#333] text-center">Номер автомата</th>
+                        <th class="border-r p-2 font-normal text-[#333] text-center">IMEI / ID контроллера</th>
+                        <th class="border-r p-2 font-normal text-[#333] text-center">Имя автомата</th>
+                        <th class="border-r p-2 font-normal text-[#333] text-center">Адрес</th>
                     </tr>
                     </thead>
                     <tbody>

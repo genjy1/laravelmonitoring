@@ -23,8 +23,12 @@ return new class extends Migration
             $table->string('errors');
             $table->date('subscription_until');
             $table->string('software_version');
+            $table->string('cash_counter')->nullable()->default(0);
+            $table->string('goods_sold')->nullable()->default(0);
+            $table->string('goods_total')->nullable()->default(0);
+            $table->string('capacity')->default(1);
             $table->string('controller_id');
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable()->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

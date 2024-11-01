@@ -31,16 +31,13 @@ return [
 
     'connections' => [
 
-        'sqlite' => [
+        'second' => [
             'driver' => 'sqlite',
-            'url' => env('DB_URL'),
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
+            'database' => env('DB_SECOND_DATABASE','192.168.0.185/root/opt/automat_controller/data/automat.db'), // Укажите путь к файлу
             'prefix' => '',
-            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
-            'busy_timeout' => null,
-            'journal_mode' => null,
-            'synchronous' => null,
+            'foreign_key_constraints' => true,
         ],
+
 
         'mysql' => [
             'driver' => 'mysql',

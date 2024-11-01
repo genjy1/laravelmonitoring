@@ -85,7 +85,7 @@
                                 Текущий баланс
                             </label>
                         </td>
-                        <td class="p-2">
+                        <td class="flex items-center">
                             <input type="number" id="balance" name="balance" min="0" class="p-2 disabled:bg-white balance-input no-arrows" disabled value="{{$machine->balance ?? 0}}">
                             @if($machine->status === 'Online')
                                 <button type="button" class="balance-btn flex float-right border py-2 px-2 items-center rounded gap-2">

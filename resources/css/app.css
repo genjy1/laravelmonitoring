@@ -10,6 +10,17 @@
     }
 }
 
+input[type="number"] {
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    appearance: textfield;
+}
+
+.goods-row:hover input{
+    background: #eee;
+}
+
+
 
 @font-face {
     font-family:'Futura PT';

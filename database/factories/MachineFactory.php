@@ -2,8 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Http\Controllers\UserController;
 use App\Models\Machine;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Machine>
@@ -32,6 +35,7 @@ class MachineFactory extends Factory
             'subscription_until'=>fake()->dateTime(),
             'software_version'=>fake()->semver(),
             'controller_id'=>fake()->uuid(),
+            'user_id'=>fake()->randomElement(range(1,10))
         ];
     }
 }

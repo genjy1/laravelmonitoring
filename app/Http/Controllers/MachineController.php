@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Machine;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class MachineController extends Controller
 {
@@ -48,6 +49,24 @@ class MachineController extends Controller
     public function edit(Machine $machine)
     {
         //
+    }
+
+    public function showState(Request $request, $id)
+    {
+        // Получаем параметры сортировки из запроса
+        $sortField = $request->get('sort', 'id'); // По умолчанию сортировка по 'id'
+        $sortDirection = $request->get('direction', 'asc'); // По умолчанию по возрастанию
+
+        // Валидация направления сортировки
+        if (!in_array($sortDirection, ['asc', 'desc'])) {
+            $sortDirection = 'asc';
+        }
+
+        $user = User::find($id);
+        $machines = Machine::whereBelongsTo($user)
+            ->orderBy($sortField,$sortDirection)
+            ->paginate(15);
+        return view('machine.state',compact('machines','sortDirection'));
     }
 
     /**
