@@ -14,6 +14,7 @@ try{
     })
     console.log(addBtn)
 }catch (e){
-    console.log(e)
+    let error;
+    error = e;
 }
 

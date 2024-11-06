@@ -4,10 +4,11 @@
     <body class="font-sans">
         @include('components.header')
         <div class="container w-4/5 mx-auto my-0 mt-20">
+            @include('components.success')
             <h2 class="text-3xl pb-2 border-b mb-3.5 mt-3 font-semibold flex items-center justify-between">
                 Сервис
                 <a href="{{route('machine.attach')}}" class="text-white flex gap-2 border-r-2 bg-[#337ab7] rounded-[4px] font-semibold border-[#2e6da4] text-lg px-4 py-2 float-right">
-                    Привязать автомат
+                    <span class="text hidden sm:block">Привязать автомат</span>
                     <span class="icon">
                         <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                             <!-- Круг -->
@@ -51,7 +52,7 @@
                     </tbody>
                 </table>
                 <!-- Карточки для мобильных устройств -->
-                <div class="grid gap-4 sm:hidden h-[600px] overflow-y-auto">
+                <div class="grid gap-4 sm:hidden h-[600px] overflow-y-auto before:w-full before:shadow-purple-800 before:h-full">
                     @foreach($machines as $machine)
                         <a href="{{route('machine.show',$machine->id)}}">
                                     <div class="border border-gray-300 rounded-lg p-4 shadow-md" >

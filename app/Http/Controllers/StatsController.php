@@ -23,7 +23,8 @@ class StatsController extends Controller
 
     public function totals()
     {
-        return view('stats.totals');
+        $sales = Sales::all();
+        return view('stats.totals', compact('sales'));
     }
 
     public function proceeds()

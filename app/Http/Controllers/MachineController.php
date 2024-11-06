@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Machine;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class MachineController extends Controller
 {
@@ -30,6 +31,7 @@ class MachineController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
@@ -93,6 +95,18 @@ class MachineController extends Controller
     public function destroy(Machine $machine)
     {
         //
+    }
+
+    public function attachPost(Request $request, $user_id)
+    {
+        $controllerId = $request->only('controller_id');
+        $machine = Machine::where('controller_id',$controllerId)->first();
+
+        $machine->user_id = $user_id;
+
+        $machine->update();
+
+        return redirect()->route('common.home',Auth::user()->id)->with('success','Автомат успешно привязан');
     }
 
     public function attach()

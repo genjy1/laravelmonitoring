@@ -21,14 +21,10 @@
             @foreach($goods as $good)
                 <tr class="border-b hover:bg-[#eee] goods-row">
                     <td class="border-r py-2 px-2 text-center">
-                        <div class="flex justify-center items-center">
-                            <input type="text" name="code" id="code" value="{{$good->code}}" class="w-full text-center outline-none goods-input">
-                        </div>
+                        {{$good->code}}
                     </td>
                     <td class="border-r py-2 px-2 text-center">
-                        <div class="flex justify-center items-center">
-                            <input type="text" name="name" id="name" value="{{$good->name}}" class="w-full text-center outline-none goods-input">
-                        </div>
+                        {{$good->name}}
                     </td>
                     <td class="border-r py-2 px-2">
                         <form action="{{ route('goods.destroy',$good->id) }}" method="post" class="m-0 text-center">
@@ -45,7 +41,7 @@
         </table>
         <dialog class="modal rounded w-2/4">
                 <header class="border-b">
-                    <div class="container flex justify-between gap-2 p-[15px]">
+                    <div class="container-modal flex justify-between gap-2 p-[15px]">
                         Добавить новую запись
                         <button class="close">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="red">

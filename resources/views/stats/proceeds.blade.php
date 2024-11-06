@@ -1,7 +1,8 @@
 @include('components.head')
+@vite('resources/js/sum.js')
 <body>
     @include('components.header')
-    <main class="main mx-auto mt-20 w-4/5">
+    <main class="main mx-auto mt-24 w-4/5">
         <h1 class="text-2xl">
             Распределение выручки
         </h1>
@@ -32,7 +33,7 @@
                         <td class="text-center border-r py-2">{{$sale->id}}</td>
                         <td class="text-center border-r py-2">{{$sale->machine->number}}</td>
                         <td class="text-center border-r py-2">{{$sale->machine->name}}</td>
-                        <td class="text-center border-r py-2">{{$sale->count()}}</td>
+                        <td class="text-center border-r py-2 sold">{{$sale->balance}}</td>
                         <td class="text-center py-2"></td>
                     </tr>
                 @endforeach
@@ -42,7 +43,7 @@
                     <th class="py-2">Всего:</th>
                     <th class="py-2"></th>
                     <th class="py-2"></th>
-                    <th class="py-2">758,05</th>
+                    <th class="py-2 sold-total">0</th>
                     <th class="py-2">111699,40</th>
                 </tr>
             </tfoot>

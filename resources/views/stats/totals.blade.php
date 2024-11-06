@@ -15,8 +15,15 @@
             </tr>
             </thead>
             <tbody>
-
-                <tr class="odd:bg-[#eee]"></tr>
+                @foreach($sales as $sale)
+                    <tr class="odd:bg-[#eee]">
+                        <td class="py-2 text-center">{{$sale->created_at}}</td>
+                        <td class="py-2 text-center">{{$sale->balance}}</td>
+                        <td class="py-2 text-center"></td>
+                        <td class="py-2 text-center"></td>
+                        <td class="py-2 text-center"></td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </main>

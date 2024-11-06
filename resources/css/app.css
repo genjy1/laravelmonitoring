@@ -66,3 +66,7 @@ html{
 .dropdown-menu__mobile{
     transition: all ease-in-out;
 }
+
+.container, .main, main{
+    margin-top: 6rem !important;
+}

@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/user/{id}/machines/',['App\Http\Controllers\CommonController','index'])->name('common.home');
     Route::get('/machine/{id}',['App\Http\Controllers\MachineController', 'show'])->name('machine.show');
     Route::get('/attach',['App\Http\Controllers\MachineController', 'attach'])->name('machine.attach');
+    Route::patch('/attach/patch/{user_id}',['App\Http\Controllers\MachineController','attachPost'])->name('machine.attachPatch');
     Route::get('user/{id}/machines/state',['App\Http\Controllers\MachineController','showState'])->name('machine.showState');
 
     #Show personal account and feedback

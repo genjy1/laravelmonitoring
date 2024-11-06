@@ -12,7 +12,9 @@
     </div>
     <hr>
     <div class="form-wrapper mt-4">
-        <form action="#" class="flex flex-col gap-2">
+        <form action="{{route('machine.attachPatch',['user_id'=>\Illuminate\Support\Facades\Auth::user()->id])}}" class="flex flex-col gap-2" method="post">
+            @method('patch')
+            @csrf
             <div class="input-group">
                 <label for="controller_id" class="flex flex-col gap-2">
                     ID контроллера

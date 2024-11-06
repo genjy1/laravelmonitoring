@@ -109,7 +109,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Закрытие dropdown при клике вне области
     document.addEventListener('click', hideDropdowns);
 });
-
-// navListItems.forEach(e => {
-//     console.log(e)
-// })

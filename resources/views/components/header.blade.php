@@ -1,11 +1,11 @@
-    <header class="border-b bg-white border-gray-200 text-[#777] mb-5 fixed w-full top-0 header">
+    <header class="border-b bg-white border-gray-200 text-[#777] fixed w-full top-0 header ">
     <div class="mx-auto my-0 w-4/5 py-4 items-center justify-between hidden sm:flex">
         <a href="{{route('common.home',\Illuminate\Support\Facades\Auth::user()->id)}}" class="font-semibold text-lg">VendShop Online</a><nav class="list">
             <ul class="nav-list gap-5 flex">
                 <li class="relative">
                     <button class="dropdown-nav flex items-center" id="machineDropdownButton">
                         Автоматы
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition dropdown-icon" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06-.02L10 10.358l3.71-3.149a.75.75 0 111.02 1.096l-4.24 3.6a.75.75 0 01-.99 0l-4.24-3.6a.75.75 0 01-.02-1.06z" clip-rule="evenodd" />
                         </svg>
                     </button>
@@ -47,7 +47,11 @@
 
         <div class="menu">
             @if(\Illuminate\Support\Facades\Auth::check())
-                <div class="drop-button flex items-center">
+                <div class="drop-button flex items-center justify-between border-2 rounded p-2">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2">
+                        <circle cx="12" cy="8" r="4" fill="#777" />
+                        <path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="none" stroke="#777" stroke-width="2" />
+                    </svg>
                     <a href="#" class="cursor-pointer user-menu__button">{{ \Illuminate\Support\Facades\Auth::user()->user_name}}</a>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 -mr-1 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06-.02L10 10.358l3.71-3.149a.75.75 0 111.02 1.096l-4.24 3.6a.75.75 0 01-.99 0l-4.24-3.6a.75.75 0 01-.02-1.06z" clip-rule="evenodd" />
@@ -91,7 +95,7 @@
                         <a href="{{route('goods.list', \Illuminate\Support\Facades\Auth::user()->id)}}">Товары</a>
                     </li>
                     <li class="py-2">
-                        <a href="#">Журнал продаж</a>
+                        <a href="{{route('sales.index')}}">Журнал продаж</a>
                     </li>
                     <li class="py-2">
                         <a href="#">Статистика</a>

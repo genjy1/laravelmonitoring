@@ -63,7 +63,7 @@
                         <td class="p-2 border-r">Текущие ошибки</td>
                         <td class="p-2">
                             {{
-                                $machine->errors ? $machine->errors : 'Неизвестно'
+                                $machine->errors ?? 'Неизвестно'
                             }}
                         </td>
                     </tr>
@@ -71,13 +71,13 @@
                         <td class="p-2 border-r">Состояние</td>
                         <td class="p-2">
                             {{
-                                $machine->condition ? $machine->condition : 'Неизвестно'
+                                $machine->condition ?? 'Неизвестно'
                             }}
                         </td>
                     </tr>
                     <tr class="border-b">
                         <td class="p-2 border-r">Дата и время запуска</td>
-                        <td class="p-2">{{$machine->created_at ? $machine->created_at : 'Неизвестно'}}</td>
+                        <td class="p-2">{{$machine->created_at ?? 'Неизвестно'}}</td>
                     </tr>
                     <tr class="border-b">
                         <td class="p-2 border-r">
@@ -85,7 +85,7 @@
                                 Текущий баланс
                             </label>
                         </td>
-                        <td class="flex items-center">
+                        <td class="flex sm:flex-row sm:items-center flex-col">
                             <input type="number" id="balance" name="balance" min="0" class="p-2 disabled:bg-white balance-input no-arrows" disabled value="{{$machine->balance ?? 0}}">
                             @if($machine->status === 'Online')
                                 <button type="button" class="balance-btn flex float-right border py-2 px-2 items-center rounded gap-2">
@@ -97,15 +97,15 @@
                     </tr>
                     <tr class="border-b">
                         <td class="p-2 border-r">Номер автомата</td>
-                        <td class="flex items-center"><input type="text" class="p-2 w-full focusable" name="number" id="number" value="{{$machine->number ? $machine->number : 'Неизвестно'}}">@include('components.icons.edit',['id'=>'number'])</td>
+                        <td class="flex items-center"><input type="text" class="p-2 w-36 sm:w-full focusable" name="number" id="number" value="{{$machine->number ? $machine->number : 'Неизвестно'}}">@include('components.icons.edit',['id'=>'number'])</td>
                     </tr>
                     <tr class="border-b">
                         <td class="p-2 border-r">Имя автомата</td>
-                        <td class="flex items-center"><input type="text" class="p-2 w-full focusable" name="name" id="name" value="{{$machine->name ? $machine->name : 'Неизвестно'}}">@include('components.icons.edit',['id'=>'name'])</td>
+                        <td class="flex items-center"><input type="text" class="p-2 w-36 sm:w-full focusable" name="name" id="name" value="{{$machine->name ? $machine->name : 'Неизвестно'}}">@include('components.icons.edit',['id'=>'name'])</td>
                     </tr>
                     <tr class="border-b">
                         <td class="p-2 border-r">Адрес</td>
-                        <td class="flex items-center"><input type="text" class="p-2 w-full focusable" name="address" id="address" value="{{$machine->address ? $machine->address : 'Неизвестно'}}">@include('components.icons.edit',['id'=>'address'])</td>
+                        <td class="flex items-center"><input type="text" class="p-2 w-36 sm:w-full focusable" name="address" id="address" value="{{$machine->address ? $machine->address : 'Неизвестно'}}">@include('components.icons.edit',['id'=>'address'])</td>
                     </tr>
                     <tr class="border-b">
                         <td class="p-2 border-r">Дополнительная информация</td>
@@ -113,15 +113,15 @@
                     </tr>
                 </table>
             </div>
-            <div class="btn-group flex gap-2">
-                <button type="submit" class="p-2 bg-[#337ab7] mt-2 w-full font-semibold  text-center text-white rounded sm:max-w-[220px] flex items-center justify-between">
+            <div class="btn-group sm:flex-row flex-col flex gap-2 mt-2">
+                <button type="submit" class="p-2 bg-[#337ab7] w-full font-semibold  text-center text-white rounded sm:max-w-[220px] flex items-center justify-between">
                     Сохранить изменения
                     <svg class="w-8 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                 </button>
                 @if($machine->status === 'Online')
-                    <button type="submit" name="command" value="restart" class="bg-[#d9534f] text-white p-2 mt-2 w-full font-semibold  text-center text-white rounded sm:max-w-[220px] flex items-center justify-between">
+                    <button type="submit" name="command" value="restart" class="bg-[#d9534f] p-2 w-full font-semibold text-center text-white rounded sm:max-w-[220px] flex items-center justify-between" onclick="e w-36.sm:preventDefault()">
                         Перезагрузить автомат
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <polygon points="13,2 3,14 11,14 8,22 18,10 10,10" fill="white"/>

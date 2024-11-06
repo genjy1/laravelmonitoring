@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\FeedbackSent;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Mail\SendFeedback;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -12,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeMail;
+use App\Jobs\SendFeedbackJob;
 
 class UserController extends Controller
 {
@@ -95,11 +98,27 @@ class UserController extends Controller
 
     public function sendFeedback(Request $request)
     {
-        $data = $request->validate(['theme'=>'required','message'=>'required','user_id'=>'required']);
+        // Validate the incoming data
+        $data = $request->validate([
+            'theme' => 'required',
+            'message' => 'required',
+            'user_id' => 'required',
+        ]);
+
+        // Create the feedback entry in the database
         $feedback = Feedback::create($data);
 
-        return redirect()->route('common.feedback')->with('success','Ваше сообщение успешно отправлено');
+        // Find the user who sent the feedback
+        $user = User::find($data['user_id']);
+
+        // Отправка письма через очередь
+        SendFeedbackJob::dispatch($data);
+
+        // Redirect the user with a success message
+        return redirect()->route('common.feedback')->with('success', 'Ваше сообщение успешно отправлено');
     }
+
+
 
     public function getFeedbackWithNames()
     {
