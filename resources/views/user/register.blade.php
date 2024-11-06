@@ -1,7 +1,7 @@
 @include('components.head')
 <body>
 
-<div class="container mx-auto my-0 w-4/5 pt-10 py-5">
+<div class="container-register mx-auto my-0 w-4/5 pt-10 py-5">
     <h1 class="text-3xl pb-2">Регистрация пользователя</h1>
 
     <hr class="pb-2.5">

@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeMail;
 use App\Jobs\SendFeedbackJob;
+use Illuminate\Support\Str;
+use App\Jobs\SendRegistrationConfirmationJob;
 
 class UserController extends Controller
 {
@@ -45,8 +47,11 @@ class UserController extends Controller
         $user->user_tz = $request->input('user_tz');
         $user->user_name = $request->input('user_name');
         $user->password = bcrypt($request->input('password')); // Хешируем пароль
+        $user->email_verification_token = Str::random(40);
 
         $user->save(); // Сохраняем пользователя в базе данных
+
+        SendRegistrationConfirmationJob::dispatch($user);
 
         return redirect()->route('common.home',$user->id);
     }
@@ -229,4 +234,21 @@ class UserController extends Controller
 
         return redirect()->route('user.edit',$id);
     }
+
+    public function confirm($token)
+    {
+        $user = User::where('email_verification_token', $token)->first();
+
+        if (!$user) {
+            return redirect()->route('home')->with('error', 'Invalid token.');
+        }
+
+        // Подтверждаем регистрацию
+        $user->email_verified_at = now();
+        $user->email_verification_token = null;
+        $user->save();
+
+        return redirect()->route('home')->with('status', 'Your email has been confirmed!');
+    }
+
 }

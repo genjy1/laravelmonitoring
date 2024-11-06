@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function (){
     Route::post('/user/{id}/requisites/create',['App\Http\Controllers\RequisitesController','create'])->name('requisites.create');
     Route::patch('/user/{id}/update/password',['App\Http\Controllers\UserController','changePassword'])->name('changePassword');
     Route::patch('/user/{id}/update/Tz',['App\Http\Controllers\UserController','changeTz'])->name('changeTz');
+    Route::get('/confirm/{token}',['App\Http\Controllers\UserController','confirm'])->name('confirmation');
 
     #Goods group
 
