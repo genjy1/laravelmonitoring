@@ -1,9 +1,9 @@
-<head>
+<head class="subpixel-antialiased">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{config('app.name')}}</title>
-    <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}" type="image/x-icon">
+    <title>VendShop Online</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <!-- Fonts -->
 
     <!-- Styles / Scripts -->

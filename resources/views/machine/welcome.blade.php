@@ -52,7 +52,7 @@
                     </tbody>
                 </table>
                 <!-- Карточки для мобильных устройств -->
-                <div class="grid gap-4 sm:hidden h-[600px] overflow-y-auto before:w-full before:shadow-purple-800 before:h-full">
+                <div class="grid gap-4 sm:hidden h-[600px] overflow-y-auto">
                     @foreach($machines as $machine)
                         <a href="{{route('machine.show',$machine->id)}}">
                                     <div class="border border-gray-300 rounded-lg p-4 shadow-md" >

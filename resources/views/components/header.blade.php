@@ -1,8 +1,9 @@
     <header class="border-b bg-white border-gray-200 text-[#777] fixed w-full top-0 header ">
     <div class="mx-auto my-0 w-4/5 py-4 items-center justify-between hidden sm:flex">
-        <a href="{{route('common.home',\Illuminate\Support\Facades\Auth::user()->id)}}" class="font-semibold text-lg">VendShop Online</a><nav class="list">
+        <a href="{{route('common.home',\Illuminate\Support\Facades\Auth::user()->id)}}" class="font-semibold text-lg bg-[#6B23A7] text-white p-2 rounded-2xl border-transparent hover:bg-transparent hover:text-[#6B23A7] hover:border-[#6B23A7] transition-all ease-linear border-2">VendShop Online</a>
+        <nav class="list">
             <ul class="nav-list gap-5 flex">
-                <li class="relative">
+                <li class="relative after:border-b-2 after:block after:w-0 hover:after:w-full after:transition-all after:ease-in-out ">
                     <button class="dropdown-nav flex items-center" id="machineDropdownButton">
                         Автоматы
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 transition dropdown-icon" viewBox="0 0 20 20" fill="currentColor">
@@ -14,7 +15,7 @@
                         <li><a href="{{ route('common.home',\Illuminate\Support\Facades\Auth::user()->id) }}" class="block px-4 py-2 text-left hover:bg-gray-100">Список автоматов</a></li>
                     </ul>
                 </li>
-                <li class="relative">
+                <li class="relative after:border-b-2 after:block after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-500">
                     <button class="dropdown-nav flex items-center" id="goodsDropdownButton">
                         Товары
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
@@ -26,8 +27,8 @@
                         <li><a href="{{ route('goods.list', \Illuminate\Support\Facades\Auth::user()->id) }}" class="block px-4 py-2 hover:bg-gray-100">Список товаров</a></li>
                     </ul>
                 </li>
-                <li class="relative"><a href="{{ route('sales.index') }}">Журнал продаж</a></li>
-                <li class="relative">
+                <li class="relative after:border-b-2 after:block after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-500"><a href="{{ route('sales.index') }}">Журнал продаж</a></li>
+                <li class="relative after:border-b-2 after:block after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-500">
                     <button class="dropdown-nav flex items-center" id="statsDropdownButton">
                         Статистика
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
@@ -57,7 +58,7 @@
                         <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06-.02L10 10.358l3.71-3.149a.75.75 0 111.02 1.096l-4.24 3.6a.75.75 0 01-.99 0l-4.24-3.6a.75.75 0 01-.02-1.06z" clip-rule="evenodd" />
                     </svg>
                 </div>
-                <div class="dropdown absolute top-16 right-4 md:right-12 lg:right-48 bg-white p-4 hidden border shadow max-w-xs md:max-w-md lg:max-w-lg">
+                <div class="float-left dropdown absolute top-16 right-4 md:right-12 lg:right-48 bg-white p-4 hidden border shadow max-w-xs md:max-w-md lg:max-w-lg">
                     <ul class="dropdown-list flex flex-col gap-2 text-right">
                         <li class="list-item text-sm w-full">
                             <a href="{{ route('user.edit', \Illuminate\Support\Facades\Auth::user()->id) }}">Редактировать данные аккаунта</a>
@@ -76,8 +77,8 @@
     </div>
         <div class="mx-auto my-0 w-4/5 py-4  items-center justify-between sm:hidden flex">
         <div class="logo">
-            <a href="{{route('common.home',\Illuminate\Support\Facades\Auth::user()->id)}}" class="logo-link font-semibold text-lg">
-                VendShop Online
+            <a href="{{route('common.home',\Illuminate\Support\Facades\Auth::user()->id)}}" class="font-semibold text-lg bg-[#6B23A7] text-white p-2 rounded-2xl border-transparent hover:bg-transparent hover:text-[#6B23A7] hover:border-[#6B23A7] transition-all ease-linear border-2">
+                VS Online
             </a>
         </div>
             <button id="burger" class="block md:hidden focus:outline-none">

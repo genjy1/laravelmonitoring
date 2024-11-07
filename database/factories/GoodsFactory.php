@@ -19,7 +19,7 @@ class GoodsFactory extends Factory
         return [
             //
             'code'=>fake()->uuid(),
-            'name'=>fake()->name(),
+            'name'=>fake()->word(),
             'remains'=>fake()->randomElement(range(1,10)),
             'machine_id'=>fake()->randomElement(range(1,10))
         ];

@@ -12,16 +12,16 @@
                     <h2>Период</h2>
                 </header>
                 <div class="panel-body p-3.5 bg-white">
-                    <form action="#" class="flex-col flex gap-4 items-start">
-                        <div class="date-input__group flex items-center gap-4">
+                    <form action="#" class="flex-col flex gap-4 sm:items-start">
+                        <div class="date-input__group flex items-center gap-4 sm:flex-row flex-col">
                             <label for="datetime-picker">
                                 Начало периода
                             </label>
-                            <input type="text" id="datetime-picker" class="border font-normal border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Выберите дату"/>
+                            <input type="text" id="datetime-picker" class="border w-full font-normal border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Выберите дату"/>
                         </div>
-                        <div class="date-input__group flex items-center gap-4 w-[336px] justify-between">
+                        <div class="date-input__group flex items-center gap-4 sm:w-[336px] justify-between sm:flex-row flex-col">
                             <label for="datetime-picker ml-4">Конец периода</label>
-                            <input type="text" id="datetime-picker" class="border font-normal border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Выберите дату"/>
+                            <input type="text" id="datetime-picker" class="border w-full font-normal border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Выберите дату"/>
                         </div>
                         <button type="submit" class="border px-2 py-2 rounded">Применить</button>
                     </form>
