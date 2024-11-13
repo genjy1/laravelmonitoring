@@ -14,14 +14,16 @@ class CommonController extends Controller
      * Display a listing of the resource.
      */
 
-    public function index($id)
+    public function index()
     {
         //
-        $user = User::find($id);
-        $machines = Machine::whereBelongsTo($user)->paginate(15);
+//        $user = User::find($id);
+//        $machines = Machine::whereBelongsTo($user)->paginate(15);
+        $machines = Machine::paginate(10);
 
 
-        return view('machine.welcome',compact('machines'));
+        return response()->json($machines);
+//        return view('machine.welcome',compact('machines'));
     }
 
     /**

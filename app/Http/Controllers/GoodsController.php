@@ -17,7 +17,8 @@ class GoodsController extends Controller
         //
         $goods = Goods::paginate(15);
 
-        return view('goods.list', compact('goods'));
+//        return view('goods.list', compact('goods'));
+        return response()->json($goods);
 
     }
 
@@ -52,7 +53,7 @@ class GoodsController extends Controller
         $goods = Goods::with('machine')->paginate(10);
 
 //        dd($goods);
-        return view('goods.state',compact('goods'));
+        return response()->json($goods);
     }
 
     /**
@@ -89,6 +90,8 @@ class GoodsController extends Controller
 
         $goods->delete();
 
-        return redirect()->route('goods.list',Auth::user()->id);
+        $goods->update();
+
+        return response()->json($goods);
     }
 }

@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sales;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use App\Models\Sales;
 
 class SalesController extends Controller
 {
@@ -43,15 +42,18 @@ class SalesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function api(Request $request)
     {
         //
+        $sales = Sales::paginate(10);
+
+        return response()->json($sales);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Sales $sales)
+    public function show(string $id)
     {
         //
     }
@@ -59,7 +61,7 @@ class SalesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Sales $sales)
+    public function edit(string $id)
     {
         //
     }
@@ -67,7 +69,7 @@ class SalesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Sales $sales)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -75,7 +77,7 @@ class SalesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Sales $sales)
+    public function destroy(string $id)
     {
         //
     }

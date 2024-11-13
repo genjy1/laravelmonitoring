@@ -42,7 +42,7 @@ class MachineController extends Controller
         //
         $machine = Machine::find($id);
 
-        return view('machine.machine',compact('machine'));
+        return response()->json($machine);
     }
 
     /**
@@ -53,22 +53,23 @@ class MachineController extends Controller
         //
     }
 
-    public function showState(Request $request, $id)
+    public function showState()
     {
         // Получаем параметры сортировки из запроса
-        $sortField = $request->get('sort', 'id'); // По умолчанию сортировка по 'id'
-        $sortDirection = $request->get('direction', 'asc'); // По умолчанию по возрастанию
+//        $sortField = $request->get('sort', 'id'); // По умолчанию сортировка по 'id'
+//        $sortDirection = $request->get('direction', 'asc'); // По умолчанию по возрастанию
 
         // Валидация направления сортировки
-        if (!in_array($sortDirection, ['asc', 'desc'])) {
-            $sortDirection = 'asc';
-        }
+//        if (!in_array($sortDirection, ['asc', 'desc'])) {
+//            $sortDirection = 'asc';
+//        }
 
-        $user = User::find($id);
-        $machines = Machine::whereBelongsTo($user)
-            ->orderBy($sortField,$sortDirection)
-            ->paginate(15);
-        return view('machine.state',compact('machines','sortDirection'));
+//        $user = User::find($id);
+        $machines = Machine::paginate(10);
+
+
+        return response()->json($machines);
+//        return view('machine.state',compact('machines','sortDirection'));
     }
 
     /**
