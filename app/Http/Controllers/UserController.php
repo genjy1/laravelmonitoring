@@ -58,27 +58,34 @@ class UserController extends Controller
 
     public function loginPost(Request $request)
     {
-        $credentials = ['user_name'=>$request->name, 'password'=>$request->password];
-        $remember = $request->has('remember');
+        $request->validate([
+            'user_name' => 'required|string',
+            'password' => 'required|string',
+        ]);
 
-        if (Auth::attempt($credentials,$remember)) {
-            $request->session()->regenerate();
-
-            return redirect()->route('common.home',Auth::user()->id);
-        }else{
-            return redirect()->route('login')->with('error','Пароль или логин не совпадают с сущеcтсвующими');
+        if (!Auth::attempt($request->only('user_name', 'password'))) {
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
 
+        $user = Auth::user();
+        $token = $user->createToken('authToken')->plainTextToken;
+
+        return response()->json(['token' => $token]);
+
     }
+
+    public function user(Request $request)
+    {
+        return response()->json($request->user());
+    }
+
     public function logout(Request $request)
     {
-        auth()->logout(); // Выход пользователя
+        Auth::guard('sanctum')->user()->tokens->each(function ($token) {
+            $token->delete();
+        });
 
-        $request->session()->invalidate(); // Инвалидация сессии
-
-        $request->session()->regenerateToken(); // Обновление токена сессии
-
-        return redirect('/'); // Перенаправление на главную страницу или другую нужную страницу
+        return response()->json(['message' => 'Выход выполнен успешно']);
     }
 
     public function edit($id)
@@ -105,9 +112,9 @@ class UserController extends Controller
     {
         // Validate the incoming data
         $data = $request->validate([
-            'theme' => 'required',
+            'theme' => 'required|max:50',
             'message' => 'required',
-            'user_id' => 'required',
+            'user_id' => 'required|exists:users,id',
         ]);
 
         // Create the feedback entry in the database
@@ -119,8 +126,11 @@ class UserController extends Controller
         // Отправка письма через очередь
         SendFeedbackJob::dispatch($data);
 
-        // Redirect the user with a success message
-        return redirect()->route('common.feedback')->with('success', 'Ваше сообщение успешно отправлено');
+        // Return a JSON response with a success message
+        return response()->json([
+            'success' => true,
+            'message' => 'Ваше сообщение успешно отправлено'
+        ], 200);
     }
 
 
@@ -140,10 +150,13 @@ class UserController extends Controller
         $data = $request->only('user_name');
 
         $user = User::find($id);
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
 
         $user->update($data);
 
-        return redirect()->route('common.home',$id);
+        return response()->json(['message' => 'Username updated successfully', 'user' => $user], 200);
     }
 
     public function changeEmail(Request $request, $id)
@@ -151,10 +164,13 @@ class UserController extends Controller
         $data = $request->only('user_email');
 
         $user = User::find($id);
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
 
         $user->update($data);
 
-        return redirect()->route('user.edit',$id);
+        return response()->json(['message' => 'Email updated successfully', 'user' => $user], 200);
     }
 
     public function changeRole(Request $request, $id)
@@ -162,21 +178,29 @@ class UserController extends Controller
         $data = $request->only('role');
 
         $user = User::find($id);
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
 
         $user->update($data);
 
-        return redirect()->route('common.home',$id);
+        return response()->json(['message' => 'Role updated successfully', 'user' => $user], 200);
     }
 
     public function changeFio(Request $request, $id)
     {
         $data = $request->only('fio');
+
         $user = User::find($id);
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
 
         $user->update($data);
 
-        return redirect()->route('user.edit',$id);
+        return response()->json(['message' => 'FIO updated successfully', 'user' => $user], 200);
     }
+
 
     public function forgotPassword()
     {
@@ -202,38 +226,54 @@ class UserController extends Controller
 
     public function changePassword(Request $request, $id)
     {
-        // Получаем введенный пароль
-        $password = $request->only('password');
+        // Валидация пароля
+        $request->validate([
+            'password' => 'required|min:8', // Можно настроить минимальную длину пароля
+        ]);
 
         // Находим пользователя по его ID
         $user = User::find($id);
 
-        // Захешируем пароль с помощью Hash::make
-        $hashedPassword = Hash::make($password['password']);
+        // Если пользователь не найден, возвращаем ошибку
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
 
-        // Обновляем пароль пользователя, передав его как массив
-        $user->password = $hashedPassword;
+        // Захешируем новый пароль
+        $user->password = Hash::make($request->password);
 
-        $user->update();
+        // Сохраняем обновленный пароль
+        $user->save();
 
-        // Редирект после успешного обновления
-        return redirect()->route('user.edit', $id)->with('success', 'Пароль успешно обновлен');
+        // Ответ успешного обновления
+        return response()->json(['message' => 'Пароль успешно обновлен'], 200);
     }
-
 
     public function changeTz(Request $request, $id)
     {
+        // Валидация временной зоны
+        $request->validate([
+            'user_tz' => 'required|string',
+        ]);
 
-        $tz = $request->validate(['user_tz'=>'required']);
-
+        // Находим пользователя по его ID
         $user = User::find($id);
 
-        $user->user_tz = $tz['user_tz'];
+        // Если пользователь не найден, возвращаем ошибку
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
 
-        $user->update();
+        // Обновляем временную зону
+        $user->user_tz = $request->user_tz;
 
-        return redirect()->route('user.edit',$id);
+        // Сохраняем обновленную временную зону
+        $user->save();
+
+        // Ответ успешного обновления
+        return response()->json(['message' => 'Временная зона успешно обновлена'], 200);
     }
+
 
     public function confirm($token)
     {
